@@ -1,5 +1,5 @@
-import { KeystoneContext } from '@keystone-6/core/types';
 import { setupTestEnv, TestEnv } from '@keystone-6/core/testing';
+import { ContextFromConfig } from '../utils';
 import {
   getOperationListName,
   listAccessVariations,
@@ -11,7 +11,11 @@ import {
 
 type IdType = any;
 
-const afterConnect = async ({ context }: { context: KeystoneContext }) => {
+const afterConnect = async ({
+  context,
+}: {
+  context: ContextFromConfig<typeof config>;
+}) => {
   context = context.sudo();
   // ensure every list has at least some data
   const initialData: Record<string, { name: string }[]> = listAccessVariations.reduce(
@@ -41,8 +45,10 @@ const afterConnect = async ({ context }: { context: KeystoneContext }) => {
 };
 
 describe('Authed', () => {
-  let testEnv: TestEnv, context: KeystoneContext;
+  let testEnv: TestEnv<ContextFromConfig<typeof config>>;
+  let context: ContextFromConfig<typeof config>;
   let user: { id: IdType; name: string; yesRead: string; noRead: string };
+
   beforeAll(async () => {
     testEnv = await setupTestEnv({ config });
     context = testEnv.testArgs.context;
@@ -52,6 +58,7 @@ describe('Authed', () => {
     const result = await afterConnect({ context });
     user = result.user;
   });
+
   afterAll(async () => {
     await testEnv.disconnect();
   });

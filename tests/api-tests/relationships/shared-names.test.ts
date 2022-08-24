@@ -1,12 +1,11 @@
 import { text, relationship } from '@keystone-6/core/fields';
 import { list } from '@keystone-6/core';
 import { setupTestRunner } from '@keystone-6/core/testing';
-import { KeystoneContext } from '@keystone-6/core/types';
-import { apiTestConfig } from '../utils';
+import { apiTestConfig, ContextFromRunner } from '../utils';
 
 type IdType = any;
 
-const createInitialData = async (context: KeystoneContext) => {
+const createInitialData = async (context: ContextFromRunner<typeof runner>) => {
   const roles = (await context.query.Role.createMany({
     data: [{ name: 'RoleA' }, { name: 'RoleB' }, { name: 'RoleC' }],
     query: 'id name',

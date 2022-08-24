@@ -1,9 +1,8 @@
 import { CacheScope } from 'apollo-server-types';
 import { text, relationship, integer } from '@keystone-6/core/fields';
 import { list, graphQLSchemaExtension } from '@keystone-6/core';
-import { KeystoneContext } from '@keystone-6/core/types';
 import { setupTestRunner } from '@keystone-6/core/testing';
-import { apiTestConfig } from '../utils';
+import { apiTestConfig, ContextFromRunner } from '../utils';
 
 const runner = setupTestRunner({
   config: apiTestConfig({
@@ -71,7 +70,7 @@ const runner = setupTestRunner({
   }),
 });
 
-const addFixtures = async (context: KeystoneContext) => {
+const addFixtures = async (context: ContextFromRunner<typeof runner>) => {
   const users = await context.query.User.createMany({
     data: [
       { name: 'Jess', favNumber: 1 },

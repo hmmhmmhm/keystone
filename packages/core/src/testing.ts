@@ -58,6 +58,7 @@ export async function setupTestEnv<Context extends KeystoneContext>({
     await writeCommittedArtifacts(artifacts, artifactPath);
     await generateNodeModulesArtifacts(graphQLSchema, config, artifactPath);
   }
+
   await pushPrismaSchemaToDatabase(
     config.db.url,
     config.db.shadowDatabaseUrl,

@@ -3,7 +3,7 @@ import { gen, sampleOne } from 'testcheck';
 import { text, relationship } from '@keystone-6/core/fields';
 import { list } from '@keystone-6/core';
 import { setupTestRunner } from '@keystone-6/core/testing';
-import { apiTestConfig } from '../utils';
+import { apiTestConfig, ListKeyFromRunner } from '../utils';
 
 const alphanumGenerator = gen.alphaNumString.notEmpty();
 
@@ -25,6 +25,8 @@ const runner = setupTestRunner({
     },
   }),
 });
+
+type ListKey = ListKeyFromRunner<typeof runner>;
 
 describe('Querying with relationship filters', () => {
   describe('to-single', () => {
@@ -112,7 +114,7 @@ describe('Querying with relationship filters', () => {
     test(
       'every condition',
       runner(async ({ context }) => {
-        const create = async (listKey: string, data: any) =>
+        const create = async (listKey: ListKey, data: any) =>
           context.query[listKey].createOne({ data });
         const { users } = await setup(create);
 
@@ -129,7 +131,7 @@ describe('Querying with relationship filters', () => {
     test(
       'some condition',
       runner(async ({ context }) => {
-        const create = async (listKey: string, data: any) =>
+        const create = async (listKey: ListKey, data: any) =>
           context.query[listKey].createOne({ data });
         const { users } = await setup(create);
 
@@ -152,7 +154,7 @@ describe('Querying with relationship filters', () => {
     test(
       'none condition',
       runner(async ({ context }) => {
-        const create = async (listKey: string, data: any) =>
+        const create = async (listKey: ListKey, data: any) =>
           context.query[listKey].createOne({ data });
         const { users } = await setup(create);
 
@@ -193,7 +195,7 @@ describe('Querying with relationship filters', () => {
     test(
       'every condition',
       runner(async ({ context }) => {
-        const create = async (listKey: string, data: any) =>
+        const create = async (listKey: ListKey, data: any) =>
           context.query[listKey].createOne({ data });
         const { users } = await setup(create);
 
@@ -212,7 +214,7 @@ describe('Querying with relationship filters', () => {
     test(
       'some condition',
       runner(async ({ context }) => {
-        const create = async (listKey: string, data: any) =>
+        const create = async (listKey: ListKey, data: any) =>
           context.query[listKey].createOne({ data });
         const { users } = await setup(create);
 
@@ -232,7 +234,7 @@ describe('Querying with relationship filters', () => {
     test(
       'none condition',
       runner(async ({ context }) => {
-        const create = async (listKey: string, data: any) =>
+        const create = async (listKey: ListKey, data: any) =>
           context.query[listKey].createOne({ data });
         const { users } = await setup(create);
 
@@ -266,7 +268,7 @@ describe('Querying with relationship filters', () => {
     test(
       'every condition',
       runner(async ({ context }) => {
-        const create = async (listKey: string, data: any) =>
+        const create = async (listKey: ListKey, data: any) =>
           context.query[listKey].createOne({ data });
         const { users } = await setup(create);
 
@@ -288,7 +290,7 @@ describe('Querying with relationship filters', () => {
     test(
       'some condition',
       runner(async ({ context }) => {
-        const create = async (listKey: string, data: any) =>
+        const create = async (listKey: ListKey, data: any) =>
           context.query[listKey].createOne({ data });
         const { users } = await setup(create);
 
@@ -304,7 +306,7 @@ describe('Querying with relationship filters', () => {
     test(
       'none condition',
       runner(async ({ context }) => {
-        const create = async (listKey: string, data: any) =>
+        const create = async (listKey: ListKey, data: any) =>
           context.query[listKey].createOne({ data });
         const { users } = await setup(create);
 

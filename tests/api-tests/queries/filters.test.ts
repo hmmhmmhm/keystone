@@ -1,13 +1,13 @@
 import { text, relationship, integer } from '@keystone-6/core/fields';
 import { list } from '@keystone-6/core';
 import { setupTestRunner } from '@keystone-6/core/testing';
-import { KeystoneContext } from '@keystone-6/core/types';
 import {
   apiTestConfig,
   expectAccessReturnError,
   expectBadUserInput,
   expectGraphQLValidationError,
   expectFilterDenied,
+  ContextFromRunner,
 } from '../utils';
 
 const runner = setupTestRunner({
@@ -73,9 +73,9 @@ const runner = setupTestRunner({
   }),
 });
 
-const initialiseData = async ({ context }: { context: KeystoneContext }) => {
+const initialiseData = async ({ context }: { context: ContextFromRunner<typeof runner> }) => {
   // Use shuffled data to ensure that ordering is actually happening.
-  for (const listKey of Object.keys(context.query)) {
+  for (const listKey of Object.keys(context.query) as Array<keyof typeof context['query']>) {
     if (listKey === 'User' || listKey === 'SecondaryList') continue;
     await context.query[listKey].createMany({
       data: [

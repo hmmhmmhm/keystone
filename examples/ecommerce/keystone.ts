@@ -27,7 +27,7 @@ const { withAuth } = createAuth({
   secretField: 'password',
   initFirstItem: {
     fields: ['name', 'email', 'password'],
-    // TODO: Add in inital roles here
+    // TODO: Add in initial roles here
   },
   passwordResetLink: {
     async sendToken(args) {
