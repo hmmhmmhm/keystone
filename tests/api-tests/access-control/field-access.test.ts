@@ -9,9 +9,10 @@ describe(`Field access`, () => {
   const mode = 'item';
   const listKey = nameFn[mode](listAccess);
 
-  let testEnv: TestEnv<ContextFromConfig<typeof config>>,
-    context: ContextFromConfig<typeof config>;
+  let testEnv: TestEnv<ContextFromConfig<typeof config>>;
+  let context: ContextFromConfig<typeof config>;
   let items: Record<string, { id: IdType; name: string }[]>;
+
   beforeAll(async () => {
     testEnv = await setupTestEnv({ config });
     context = testEnv.testArgs.context;
@@ -28,6 +29,7 @@ describe(`Field access`, () => {
       })) as { id: IdType; name: string }[];
     }
   });
+
   afterAll(async () => {
     await testEnv.disconnect();
   });

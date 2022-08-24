@@ -11,11 +11,7 @@ import {
 
 type IdType = any;
 
-const afterConnect = async ({
-  context,
-}: {
-  context: ContextFromConfig<typeof config>;
-}) => {
+const afterConnect = async ({ context }: { context: ContextFromConfig<typeof config> }) => {
   context = context.sudo();
   // ensure every list has at least some data
   const initialData: Record<string, { name: string }[]> = listAccessVariations.reduce(
