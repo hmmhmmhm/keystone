@@ -38,6 +38,7 @@ const _hashPrismaSchema = memoizeOne(prismaSchema =>
   crypto.createHash('md5').update(prismaSchema).digest('hex')
 );
 const _alreadyGeneratedProjects = new Set<string>();
+
 export async function setupTestEnv<Context extends KeystoneContext>({
   config: _config,
 }: {
@@ -49,7 +50,6 @@ export async function setupTestEnv<Context extends KeystoneContext>({
 
   const artifacts = await getCommittedArtifacts(graphQLSchema, config);
   const hash = _hashPrismaSchema(artifacts.prisma);
-
   const artifactPath = path.resolve('.keystone', 'tests', hash);
 
   if (!_alreadyGeneratedProjects.has(hash)) {
@@ -84,7 +84,8 @@ export async function setupTestEnv<Context extends KeystoneContext>({
   return {
     connect,
     disconnect: async () => {
-      await Promise.all([disconnect(), apolloServer.stop()]);
+      await disconnect();
+      await apolloServer.stop();
     },
     testArgs: {
       context: createContext() as Context,
@@ -100,14 +101,7 @@ export function setupTestRunner<Context extends KeystoneContext>({
 }: {
   config: KeystoneConfig;
 }) {
-  type TestArgs = {
-    context: Context;
-    graphQLRequest: GraphQLRequest;
-    app: express.Express;
-    server: Server;
-  };
-
-  return (testFn: (testArgs: TestArgs) => Promise<void>) => async () => {
+  return (testFn: (testArgs: TestArgs<Context>) => Promise<void>) => async () => {
     // Reset the database to be empty for every test.
     const { connect, disconnect, testArgs } = await setupTestEnv<Context>({ config });
     await connect();
