@@ -205,7 +205,7 @@ export function printGeneratedTypes(
       printInterimType(list, listKey, gqlNames.updateInputName, 'Update')
     );
 
-    listsTypeInfo.push(`  readonly ${listKey}: ${listTypeInfoName};`);
+    listsTypeInfo.push(`    readonly ${listKey}: ${listTypeInfoName};`);
     listsNamespaces.push(printListTypeInfo(listKey, list));
   }
 
@@ -221,7 +221,6 @@ export function printGeneratedTypes(
     }),
     '',
     interimCreateUpdateTypes.join('\n\n'),
-    '',
     '',
     'export declare namespace Lists {',
     ...listsNamespaces,
