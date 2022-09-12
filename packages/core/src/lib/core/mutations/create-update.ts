@@ -55,7 +55,6 @@ async function createSingle(
   );
 
   const writeLimit = getWriteLimit(context);
-
   const item = await writeLimit(() =>
     runWithPrisma(context, list, model =>
       model.create({ data: list.isSingleton ? { ...data, id: 1 } : data })
