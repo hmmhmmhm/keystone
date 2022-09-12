@@ -1,5 +1,46 @@
 # @keystone-6/core
 
+## 3.0.0
+
+### Major Changes
+
+- [#7871](https://github.com/keystonejs/keystone/pull/7871) [`750865797`](https://github.com/keystonejs/keystone/commit/75086579712803043065f59bff768f41a7293bd1) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Removes `app`, `server` and `graphQLRequest` from `TestArgs` in `@keystone-6/core/testing`
+
+* [#7848](https://github.com/keystonejs/keystone/pull/7848) [`7ae3bb706`](https://github.com/keystonejs/keystone/commit/7ae3bb7064f54d5d94e55de07339336faff57a0f) Thanks [@Noviny](https://github.com/Noviny)! - Changes `.access` control on `list` to required, with new `allowAll` and `denyAll` functions for easy shorthand.
+
+- [#7817](https://github.com/keystonejs/keystone/pull/7817) [`0530069b6`](https://github.com/keystonejs/keystone/commit/0530069b6d3a459f41a77a6b014cdb2178649eef) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Upgrade to `graphql@16`
+
+* [#7671](https://github.com/keystonejs/keystone/pull/7671) [`c06c5d60c`](https://github.com/keystonejs/keystone/commit/c06c5d60c8a4d0f05eb3b1e84f97b5611f07005a) Thanks [@renovate](https://github.com/apps/renovate)! - Upgrade to `prisma@4`
+
+- [#7888](https://github.com/keystonejs/keystone/pull/7888) [`ed3d97874`](https://github.com/keystonejs/keystone/commit/ed3d97874e93470cccac67ac2e43dbd268e7e929) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Changes default Apollo Server configuration to use `cache: "bounded"` and `persistedQueries: false`
+
+* [#7912](https://github.com/keystonejs/keystone/pull/7912) [`c3a3789c6`](https://github.com/keystonejs/keystone/commit/c3a3789c6e4a1761a24cd02904b7549a62113363) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Removes `createSessionContext` export from `@keystone-6/core/session`
+
+- [#7671](https://github.com/keystonejs/keystone/pull/7671) [`c06c5d60c`](https://github.com/keystonejs/keystone/commit/c06c5d60c8a4d0f05eb3b1e84f97b5611f07005a) Thanks [@renovate](https://github.com/apps/renovate)! - Changes the return type for the `resolveInput` hook with `json` fields. Previously you may have used `'DbNull'` or `'JsonNull'` as respective null magic values - you can now always use a Javascript `null` value.
+  Unlike previous behaviour, a null value will now consistently map to a `Prisma.DbNull`.
+
+* [#7805](https://github.com/keystonejs/keystone/pull/7805) [`c2275621d`](https://github.com/keystonejs/keystone/commit/c2275621d7e96576acd59de7636095c432b3570e) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Changes field `.views` module resolution, from a path, to a module path that is resolved from where `keystone start` is run
+
+### Minor Changes
+
+- [#7878](https://github.com/keystonejs/keystone/pull/7878) [`55103f9dd`](https://github.com/keystonejs/keystone/commit/55103f9dd914b9976d02f4412e4a2b64e3d3d8b8) Thanks [@borisno2](https://github.com/borisno2)! - Fixes return types for `context.graphql` so that correct types are returned when using a `TypedDocumentNode`
+
+* [#7863](https://github.com/keystonejs/keystone/pull/7863) [`524431be6`](https://github.com/keystonejs/keystone/commit/524431be6795421b3b1bf6e42276cc81979e5255) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Adds a new `singleton` list function for configuring Singleton lists
+
+### Patch Changes
+
+- [#7809](https://github.com/keystonejs/keystone/pull/7809) [`309786f7b`](https://github.com/keystonejs/keystone/commit/309786f7bfe9d32a25726b156a20be79123dc236) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Changed platform compilation to use [esbuild](https://esbuild.github.io/), previously used next.js
+
+* [#7910](https://github.com/keystonejs/keystone/pull/7910) [`2317d0bf5`](https://github.com/keystonejs/keystone/commit/2317d0bf5f9c9ce17a5d5106a12e408586e0cef6) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Removes `experimental.enableNextJsGraphqlApiEndpoint`
+
+- [#7874](https://github.com/keystonejs/keystone/pull/7874) [`824dafa2e`](https://github.com/keystonejs/keystone/commit/824dafa2ecb9a28561879d8e38ba5cc0753d6e42) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Removes `prettier` from formatting the generated `schema.graphql`
+
+* [#7877](https://github.com/keystonejs/keystone/pull/7877) [`ad54ef340`](https://github.com/keystonejs/keystone/commit/ad54ef340ee6d13f4ebdebcce1363ddb98b4f5e1) Thanks [@dcousens](https://github.com/dcousens)! - Adds contextualised types when using the `graphql` export for GraphQL schema extensions
+
+- [#7833](https://github.com/keystonejs/keystone/pull/7833) [`fdbfca33b`](https://github.com/keystonejs/keystone/commit/fdbfca33b473bc76326ea47b8ed60ac7eaa6a58d) Thanks [@Noviny](https://github.com/Noviny)! - Fixes types for `resolvedData`, and the return types for `resolveInput` hooks.
+
+* [#7866](https://github.com/keystonejs/keystone/pull/7866) [`e84fb87b3`](https://github.com/keystonejs/keystone/commit/e84fb87b3f3433f130a26aa4f250f02e5d73808c) Thanks [@acburdine](https://github.com/acburdine)! - Fixes nullable and non-nullable calendarDay fields existing in the same schema creating a GraphQL schema with two different types with the same name
+
 ## 2.2.0
 
 ### Minor Changes

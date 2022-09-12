@@ -1,6 +1,6 @@
-# @keystone-6/example-graphql-ts-gql
+# @keystone-6/singleton
 
-## 0.0.4
+## 0.0.5
 
 ### Patch Changes
 
