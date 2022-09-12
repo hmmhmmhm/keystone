@@ -38,10 +38,9 @@ async function getFilteredItem(
     where = { AND: [where, await resolveWhereInput(accessFilters, list, context)] };
   }
   const item = await runWithPrisma(context, list, model => model.findFirst({ where }));
-  if (item === null) {
-    throw missingItem(operation, uniqueWhere);
-  }
-  return item;
+  if (item !== null) return item;
+
+  throw missingItem(operation, uniqueWhere);
 }
 
 export async function checkUniqueItemExists(
